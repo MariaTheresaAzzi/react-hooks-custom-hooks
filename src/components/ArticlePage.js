@@ -4,9 +4,15 @@ import { makeEmojiList } from "../utils";
 
 function ArticlePage() {
   // fetch data for a post
+  // const { id } = useParams();
+  // const [isLoaded, setIsLoaded] = useState(false);
+  // const [post, setPost] = useState(null);
+
   const { id } = useParams();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [post, setPost] = useState(null);
+  const { data: post, isLoaded } = useQuery(
+    `http://localhost:4000/posts/${id}`
+  );
+
 
   const url = `http://localhost:4000/posts/${id}`;
   useEffect(() => {
@@ -21,9 +27,7 @@ function ArticlePage() {
 
   // set the document title
   const pageTitle = post ? `Underreacted | ${post.title}` : "Underreacted";
-  useEffect(() => {
-    document.title = pageTitle;
-  }, [pageTitle]);
+  useDocumentTitle(pageTitle);
 
   if (!isLoaded) return <h3>Loading...</h3>;
 

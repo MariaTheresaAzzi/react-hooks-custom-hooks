@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-
-// take in the url
+import { useState, useEffect } from "react";
 function useQuery(url) {
   const [isLoaded, setIsLoaded] = useState(false);
   // rename `posts` to a more generic `data`
